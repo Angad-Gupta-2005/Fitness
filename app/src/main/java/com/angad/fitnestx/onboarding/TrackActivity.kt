@@ -1,25 +1,29 @@
 package com.angad.fitnestx.onboarding
 
+import android.annotation.SuppressLint
+import android.app.ActivityOptions
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.angad.fitnestx.R
-import com.angad.fitnestx.databinding.ActivitySplash2Binding
+import com.angad.fitnestx.databinding.ActivityTrackBinding
 
-class Splash2Activity : AppCompatActivity() {
+class TrackActivity : AppCompatActivity() {
 
 //    Creating an instance of binding
-    private lateinit var binding: ActivitySplash2Binding
+    private lateinit var binding: ActivityTrackBinding
 
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-//        Initialised the binding
-        binding = ActivitySplash2Binding.inflate(layoutInflater)
+    //    Initialised the binding
+        binding = ActivityTrackBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -27,9 +31,11 @@ class Splash2Activity : AppCompatActivity() {
             insets
         }
 
-    //    Go to the track your goal activity
-        binding.btnGetStarted.setOnClickListener {
-            startActivity(Intent(this, TrackActivity::class.java))
+    //    Go to the Burn activity
+        binding.btnSplash1.setOnClickListener {
+            val intent = Intent(this, BurnActivity::class.java)
+            val options = ActivityOptions.makeCustomAnimation(this, R.anim.from_right, R.anim.from_right)
+            startActivity(intent, options.toBundle())
             finish()
         }
     }
